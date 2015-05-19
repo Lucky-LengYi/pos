@@ -3,10 +3,13 @@ function printInventory(inputs) {
     var all_items = loadAllItems();
     var sum_list=[];
 
+    //for循环遍历输入的数组
     for (var i = 0; i < inputs.length; i++) {
         var exist=false;
         var sum={};
 
+        //将两个传入的数组进行比较。
+        //查找曾经是否存在数据，如果存在，则将它的数量加1，如果不存在，则创建。
         for (var x = 0; x < all_items.length; x++) {
             if (inputs[i]===all_items[x].barcode) {
                 for (var y = 0; y < sum_list.length; y++) {
@@ -25,6 +28,8 @@ function printInventory(inputs) {
             }
         }
     }
+
+    //for循环自己创建的数组、对他们进行遍历，来拼接字符串，并输出。
     var result='***<没钱赚商店>购物清单***\n';
     var total_price=0;
     for (var z = 0; z < sum_list.length; z++) {
