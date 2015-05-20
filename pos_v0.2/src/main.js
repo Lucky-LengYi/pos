@@ -12,6 +12,7 @@ function printInventory(inputs) {
                     if (all_items[x].name===sum_list[y].name) {
                         sum_list[y].count++;
                         exist=true;
+                        break;
                     }
                 }
                 if (!exist) {

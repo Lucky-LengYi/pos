@@ -9,6 +9,7 @@ function printInventory(inputs) {
             if (inputs[i].name===sum_list[x].name) {
                 sum_list[x].count++;
                 exist=true;
+                break;
             }
         }
         if (!exist) {
