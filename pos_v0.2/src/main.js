@@ -8,10 +8,9 @@ function printInventory(inputs) {
         var all_items_length=all_items.length;
 
         for (var x=0; x<all_items_length; x++) {
-
             if (inputs[i]===all_items[x].barcode) {
-                for (var y=0; y<sum_list.length; y++) {
 
+                for (var y=0; y<sum_list.length; y++) {
                     if (all_items[x].name===sum_list[y].name) {
                         sum_list[y].count++;
                         exist=true;
@@ -32,7 +31,7 @@ function printInventory(inputs) {
     var sum_list_length = sum_list.length;
 
     for (var z = 0; z < sum_list_length; z++) {
-        
+
         var count_unit=sum_list[z].count+sum_list[z].unit;
         var subtotal=(sum_list[z].price*sum_list[z].count).toFixed(2);
 
