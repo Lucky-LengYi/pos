@@ -2,10 +2,12 @@ function printInventory(inputs) {
     var sum_list=[];
 
     for (var i=0; i<inputs.length; i++) {
+
         var exist=false;
         var sum={};
 
         for (var x=0; x<sum_list.length; x++) {
+
             if (inputs[i].name===sum_list[x].name) {
                 sum_list[x].count++;
                 exist=true;
@@ -27,6 +29,7 @@ function printInventory(inputs) {
     var sum_list_length=sum_list.length;
 
     for (var y=0; y<sum_list_length; y++) {
+        
         result_list=result_list+
         '名称：'+ sum_list[y].name+'，'+
         '数量：'+ sum_list[y].count+sum_list[y].unit+'，'+
@@ -38,7 +41,7 @@ function printInventory(inputs) {
 
     var result_sum_price = '----------------------\n' +
     '总计：'+total_price.toFixed(2) + '(元)\n';
-    
+
     var result_bottom = '**********************';
     var result= result_title + result_list + result_sum_price + result_bottom;
     console.log(result);

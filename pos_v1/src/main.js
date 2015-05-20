@@ -1,17 +1,20 @@
-
 function printInventory(inputs) {
     var all_items = loadAllItems();
     var sum_list = [];
     var inputs_length = inputs.length;
     for (var i=0; i<inputs_length; i++) {
-        var exist=false;
 
-        var barcode=inputs[i].length>11?inputs[i].substring(0,10):inputs[i];
-        var count=inputs[i].length>11?parseInt(inputs[i].substring(11)):1;
+        var exist=false;
+        var CHAR_LENGTH=11;
+
+        var barcode=inputs[i].length>CHAR_LENGTH?inputs[i].substring(0,CHAR_LENGTH-1):inputs[i];
+        var count=inputs[i].length>CHAR_LENGTH?parseInt(inputs[i].substring(CHAR_LENGTH)):1;
 
         for (var x=0; x<all_items.length; x++) {
+
             if(all_items[x].barcode===barcode){
                 for (var y=0; y<sum_list.length; y++) {
+
                     if (all_items[x].name===sum_list[y].name) {
                         sum_list[y].count=sum_list[y].count+count;
                         sum_list[y].reduce=sum_list[y].reduce+count;
@@ -37,7 +40,9 @@ function printInventory(inputs) {
     var sum_list_length =sum_list.length;
 
     for (var m=0; m<sum_list_length; m++) {
+
         for (var a=0; a<reduce_list.length; a++) {
+
             if (sum_list[m].barcode===reduce_list[a]) {
                 if (sum_list[m].reduce>2) {
                     sum_list[m].reduce=sum_list[m].reduce-Math.floor(sum_list[m].reduce/3);
@@ -50,6 +55,7 @@ function printInventory(inputs) {
     var result_reduce='----------------------\n'+'挥泪赠送商品：\n';
 
     for (var z=0; z<sum_list_length; z++) {
+        
         var subtotal=(sum_list[z].price*sum_list[z].reduce).toFixed(2);
         var count_unit=sum_list[z].count+sum_list[z].unit;
 

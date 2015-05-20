@@ -6,6 +6,7 @@ function printInventory(inputs) {
     var inputs_length = inputs.length;
 
     for (var i=0; i<inputs_length; i++) {
+        
         result_list=result_list+
         '名称：'+ inputs[i].name + '，' +
         '数量：'+ inputs[i].count+inputs[i].unit + '，' +
@@ -16,7 +17,7 @@ function printInventory(inputs) {
 
     var result_sum_price = '----------------------\n' +
     '总计：'+sum.toFixed(2) + '(元)\n';
-    
+
     var result_bottom = '**********************';
     var result = result_title + result_list + result_sum_price + result_bottom;
     console.log(result);
