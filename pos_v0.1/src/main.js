@@ -1,13 +1,10 @@
-//TODO: Please write code in this file.
 function printInventory(inputs) {
     var sum_list=[];
 
-    //for循环遍历输入的数组
     for (var i = 0; i < inputs.length; i++) {
         var exist=false;
         var sum={};
 
-        //查找曾经是否存在数据，如果存在，则将它的数量加1，如果不存在，则创建。
         for (var x = 0; x < sum_list.length; x++) {
             if (inputs[i].name===sum_list[x].name) {
                 sum_list[x].count++;
@@ -23,7 +20,6 @@ function printInventory(inputs) {
         }
     }
 
-    //for循环自己创建的数组、对他们进行遍历，来拼接字符串，并输出。
     var result='***<没钱赚商店>购物清单***\n';
     var total_price=0;
     for (var y = 0; y < sum_list.length; y++) {
