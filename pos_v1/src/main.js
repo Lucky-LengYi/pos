@@ -11,10 +11,9 @@ function printInventory(inputs) {
         var count=inputs[i].length>CHAR_LENGTH?parseInt(inputs[i].substring(CHAR_LENGTH)):1;
 
         for (var x=0; x<all_items.length; x++) {
-
             if(all_items[x].barcode===barcode){
-                for (var y=0; y<sum_list.length; y++) {
 
+                for (var y=0; y<sum_list.length; y++) {
                     if (all_items[x].name===sum_list[y].name) {
                         sum_list[y].count=sum_list[y].count+count;
                         sum_list[y].reduce=sum_list[y].reduce+count;
@@ -22,6 +21,7 @@ function printInventory(inputs) {
                         break;
                     }
                 }
+
                 if (!exist) {
                     all_items[x].count=count;
                     all_items[x].reduce=count;
@@ -55,7 +55,7 @@ function printInventory(inputs) {
     var result_reduce='----------------------\n'+'挥泪赠送商品：\n';
 
     for (var z=0; z<sum_list_length; z++) {
-        
+
         var subtotal=(sum_list[z].price*sum_list[z].reduce).toFixed(2);
         var count_unit=sum_list[z].count+sum_list[z].unit;
 
