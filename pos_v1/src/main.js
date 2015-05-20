@@ -69,16 +69,18 @@ function printInventory(inputs) {
             '名称：'+ sum_list[z].name + '，' +
             '数量：'+ reduce_count_list +'\n';
 
-            reduce=reduce+(sum_list[z].count-sum_list[z].reduce)*sum_list[z].price;
+            reduce = reduce+(sum_list[z].count-sum_list[z].reduce)*sum_list[z].price;
         }
     }
 
 
     var result_sum_price;
-    result_sum_price='----------------------\n'+'总计：'+total_price.toFixed(2)+'(元)\n';
-    result_sum_price=result_sum_price+'节省：'+reduce.toFixed(2)+'(元)\n';
-    result_bottom='**********************';
 
+    result_sum_price = '----------------------\n' +
+    '总计：'+total_price.toFixed(2)+'(元)\n'+
+    '节省：'+reduce.toFixed(2)+'(元)\n';
+
+    var result_bottom='**********************';
     result = result_title + result_list + result_reduce + result_sum_price + result_bottom;
     console.log(result);
 }

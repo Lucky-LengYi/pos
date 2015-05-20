@@ -40,7 +40,8 @@ function printInventory(inputs) {
 
         total_price = total_price+sum_list[z].price*sum_list[z].count;
     }
-    var result_sum_price = '----------------------\n'+'总计：'+total_price.toFixed(2)+'(元)\n';
+    var result_sum_price = '----------------------\n'+
+    '总计：'+total_price.toFixed(2)+'(元)\n';
 
     var result_bottom='**********************';
     var result= result_title + result_list + result_sum_price + result_bottom;

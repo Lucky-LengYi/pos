@@ -2,7 +2,7 @@ function printInventory(inputs) {
     var result_title='***<没钱赚商店>购物清单***\n';
     var sum = 0;
     var result_list='';
-    
+
     var inputs_length = inputs.length;
 
     for (var i=0; i<inputs_length; i++) {
@@ -14,7 +14,9 @@ function printInventory(inputs) {
         sum = sum + inputs[i].price*inputs[i].count;
     }
 
-    var result_sum_price = '----------------------\n' + '总计：'+sum.toFixed(2) + '(元)\n';
+    var result_sum_price = '----------------------\n' +
+    '总计：'+sum.toFixed(2) + '(元)\n';
+    
     var result_bottom = '**********************';
     var result = result_title + result_list + result_sum_price + result_bottom;
     console.log(result);
