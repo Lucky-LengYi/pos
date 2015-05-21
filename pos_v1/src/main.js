@@ -1,3 +1,30 @@
+function list_the_info(object){
+
+    var OBJECT_LENGTH = object.length;
+    var result_list = '';
+
+    for (i=0; i<OBJECT_LENGTH; i++) {
+        var count_unit=object[i].count+object[i].unit;
+        var subtotal=(object[i].price*object[i].real_count).toFixed(2);
+
+        result_list +=
+            '名称：'+ object[i].name + '，' +
+            '数量：'+ count_unit + '，' +
+            '单价：'+ object[i].price.toFixed(2) + '(元)，' +
+            '小计：'+ subtotal+'(元)\n';
+
+    }
+    return result_list;
+}
+function calculate_total_price(object){
+
+    var total_price = 0;
+    var OBJECT_LENGTH = object.length;
+    for (i=0; i<OBJECT_LENGTH; i++) {
+        total_price = total_price+object[i].price*object[i].real_count;
+    }
+    return total_price;
+}
 function printInventory(inputs) {
     var all_items = loadAllItems();
     var sum_list = [];
@@ -43,34 +70,20 @@ function printInventory(inputs) {
 
 
     var result_title = '***<没钱赚商店>购物清单***\n';
-    var total_price = 0;
     var reduce = 0;
     var reduce_list = loadPromotions();
     reduce_list = reduce_list[0].barcodes;
 
-    var sum_list_length =sum_list.length;
-    var result_list='';
-
-    for (var m=0; m<sum_list_length; m++) {
-        for (var a=0; a<reduce_list.length; a++) {
-            if (sum_list[m].barcode===reduce_list[a]) {
-                sum_list[m].real_count=sum_list[m].real_count-Math.floor(sum_list[m].real_count/3);
+    for (i=0; i<SUM_LIST_LENGTH; i++) {
+        for (x=0; x<reduce_list.length; x++) {
+            if (sum_list[i].barcode===reduce_list[x]) {
+                sum_list[i].real_count=sum_list[i].real_count-Math.floor(sum_list[i].real_count/3);
             }
         }
     }
 
-    for (i=0; i<sum_list_length; i++) {
-
-        var count_unit=sum_list[i].count+sum_list[i].unit;
-        var subtotal=(sum_list[i].price*sum_list[i].real_count).toFixed(2);
-
-        result_list +=
-            '名称：'+ sum_list[i].name + '，' +
-            '数量：'+ count_unit + '，' +
-            '单价：'+ sum_list[i].price.toFixed(2) + '(元)，' +
-            '小计：'+ subtotal+'(元)\n';
-        total_price = total_price+sum_list[i].price*sum_list[i].real_count;
-    }
+    var result_list = list_the_info(sum_list);
+    var total_price = calculate_total_price(sum_list);
 
     var result_reduce='----------------------\n'+
         '挥泪赠送商品：\n';
