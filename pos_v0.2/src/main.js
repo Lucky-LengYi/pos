@@ -1,26 +1,39 @@
 function printInventory(inputs) {
     var all_items = loadAllItems();
     var sum_list=[];
+    var INPUTS_LENGTH = inputs.length;
+    var i,x,y;
 
-    for (var i=0; i<inputs.length; i++) {
+    for (i=0; i<INPUTS_LENGTH; i++) {
 
-        var exist=false;
-        var all_items_length=all_items.length;
+        var exist = false;
+        var all_items_length = all_items.length;
 
-        for (var x=0; x<all_items_length; x++) {
-            if (inputs[i]===all_items[x].barcode) {
+        for (x=0; x<sum_list.length; x++) {
+            if (sum_list[x].barcode === inputs[i]) {
+                sum_list[x].count++;
+                exist = true;
+                break;
+            }
+        }
+        if (!exist) {
+            var new_item = {};
+            new_item.count = 1;
+            new_item.barcode = inputs[i];
 
-                for (var y=0; y<sum_list.length; y++) {
-                    if (all_items[x].name===sum_list[y].name) {
-                        sum_list[y].count++;
-                        exist=true;
-                        break;
-                    }
-                }
-                if (!exist) {
-                    all_items[x].count=1;
-                    sum_list.push(all_items[x]);
-                }
+            sum_list.push(new_item);
+        }
+    }
+
+    var ALL_ITEMS_LENGTH = all_items.length;
+    var SUM_LIST_LENGTH = sum_list.length;
+
+    for (i = 0; i < SUM_LIST_LENGTH; i++) {
+        for (x = 0; x < ALL_ITEMS_LENGTH; x++) {
+            if (sum_list[i].barcode === all_items[x].barcode) {
+                sum_list[i].name=all_items[x].name;
+                sum_list[i].unit=all_items[x].unit;
+                sum_list[i].price=all_items[x].price;
             }
         }
     }
