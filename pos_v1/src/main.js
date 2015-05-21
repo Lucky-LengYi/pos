@@ -16,6 +16,7 @@ function list_the_info(object){
     }
     return result_list;
 }
+
 function calculate_total_price(object){
 
     var total_price = 0;
@@ -25,6 +26,7 @@ function calculate_total_price(object){
     }
     return total_price;
 }
+
 function printInventory(inputs) {
     var all_items = loadAllItems();
     var sum_list = [];
