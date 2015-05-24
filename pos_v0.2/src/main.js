@@ -1,13 +1,8 @@
-function printInventory(inputs) {
-    var all_items = loadAllItems();
-    var sum_list=[];
-    var INPUTS_LENGTH = inputs.length;
-    var i,x,y;
+function remove_the_duplicate(inputs) {
+    var sum_list = [];
 
-    for (i=0; i<INPUTS_LENGTH; i++) {
-
+    for (i=0; i<inputs.length; i++) {
         var exist = false;
-        var all_items_length = all_items.length;
 
         for (x=0; x<sum_list.length; x++) {
             if (sum_list[x].barcode === inputs[i]) {
@@ -17,49 +12,69 @@ function printInventory(inputs) {
             }
         }
         if (!exist) {
-            var new_item = {};
-            new_item.count = 1;
-            new_item.barcode = inputs[i];
-
-            sum_list.push(new_item);
+            sum_list.push({count:1, barcode:inputs[i]});
         }
     }
+    return sum_list;
+}
 
-    var ALL_ITEMS_LENGTH = all_items.length;
-    var SUM_LIST_LENGTH = sum_list.length;
+function add_new_item(object_a,object_b){
 
-    for (i = 0; i < SUM_LIST_LENGTH; i++) {
-        for (x = 0; x < ALL_ITEMS_LENGTH; x++) {
-            if (sum_list[i].barcode === all_items[x].barcode) {
-                sum_list[i].name=all_items[x].name;
-                sum_list[i].unit=all_items[x].unit;
-                sum_list[i].price=all_items[x].price;
+    for (var i = 0; i < object_a.length; i++) {
+        for (var x = 0; x < object_b.length; x++) {
+            if (object_a[i].barcode===object_b[x].barcode) {
+                object_a[i].name=object_b[x].name;
+                object_a[i].unit=object_b[x].unit;
+                object_a[i].price=object_b[x].price;
             }
         }
     }
 
-    var result_title = '***<没钱赚商店>购物清单***\n';
-    var result_list = '';
-    var total_price = 0;
-    var sum_list_length = sum_list.length;
+    return object_a;
+}
 
-    for (var z = 0; z < sum_list_length; z++) {
+function list_the_info(sum_list){
+    var result_list = '***<没钱赚商店>购物清单***\n';
 
-        var count_unit=sum_list[z].count+sum_list[z].unit;
-        var subtotal=(sum_list[z].price*sum_list[z].count).toFixed(2);
+    for (var i = 0; i < sum_list.length; i++) {
+        var count_unit=sum_list[i].count+sum_list[i].unit;
+        var subtotal=(sum_list[i].price*sum_list[i].count).toFixed(2);
 
         result_list=result_list+
-        '名称：'+ sum_list[z].name + '，' +
+        '名称：'+ sum_list[i].name + '，' +
         '数量：'+ count_unit + '，' +
-        '单价：'+ sum_list[z].price.toFixed(2) + '(元)，' +
+        '单价：'+ sum_list[i].price.toFixed(2) + '(元)，' +
         '小计：'+ subtotal + '(元)\n';
-
-        total_price = total_price+sum_list[z].price*sum_list[z].count;
     }
-    var result_sum_price = '----------------------\n'+
-    '总计：'+total_price.toFixed(2)+'(元)\n';
+    return result_list;
+}
 
-    var result_bottom='**********************';
-    var result= result_title + result_list + result_sum_price + result_bottom;
+function calculate_total_price(object){
+    var total_price = 0;
+
+    for (var i=0; i<object.length; i++) {
+        total_price = total_price+object[i].price*object[i].count;
+    }
+
+    return total_price;
+}
+
+function calculate_sum_price(total_price){
+    var result_sum_price = '----------------------\n' +
+        '总计：'+total_price.toFixed(2)+'(元)\n'+
+        '**********************' ;
+    return result_sum_price;
+}
+
+function printInventory(inputs) {
+    var all_items = loadAllItems();
+    var sum_list = remove_the_duplicate(inputs);
+    sum_list = add_new_item(sum_list,all_items);
+
+    var result_list = list_the_info(sum_list);
+    var total_price = calculate_total_price(sum_list);
+    var result_sum_price = calculate_sum_price(total_price);
+    var result= result_list + result_sum_price;
+
     console.log(result);
 }
