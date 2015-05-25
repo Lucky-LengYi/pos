@@ -1,3 +1,5 @@
+'use strict';
+
 function remove_the_duplicate(inputs) {
     var sum_list = [];
 

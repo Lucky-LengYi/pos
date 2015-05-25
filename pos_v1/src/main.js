@@ -1,3 +1,5 @@
+'use strict';
+
 function remove_the_duplicate(object_a){
     var object_b = [];
 
@@ -130,7 +132,7 @@ function printInventory(inputs) {
     var result_reduce = free_goods(sum_list);
     var reduce = calculate_reduce(sum_list);
     var result_sum_price = calculate_sum_price(total_price,reduce);
-    result = result_list + result_reduce + result_sum_price;
+    var result = result_list + result_reduce + result_sum_price;
 
     console.log(result);
 }

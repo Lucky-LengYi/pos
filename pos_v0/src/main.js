@@ -1,3 +1,5 @@
+'use strict';
+
 function list_the_info(inputs) {
     var result_list='***<没钱赚商店>购物清单***\n';
 
@@ -30,6 +32,6 @@ function printInventory(inputs) {
     var result_list = list_the_info(inputs);
     var result_sum_price = calculate_sum_price(inputs);
     var result = result_list + result_sum_price;
-    
+
     console.log(result);
 }

@@ -1,10 +1,12 @@
+'use strict';
+
 function remove_the_duplicate(inputs) {
     var sum_list = [];
 
-    for (i=0; i<inputs.length; i++) {
+    for (var i=0; i<inputs.length; i++) {
         var exist = false;
 
-        for (x=0; x<sum_list.length; x++) {
+        for (var x=0; x<sum_list.length; x++) {
             if (sum_list[x].barcode === inputs[i]) {
                 sum_list[x].count++;
                 exist = true;
